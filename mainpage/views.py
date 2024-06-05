@@ -7,7 +7,7 @@ from django.http import HttpResponse
 def mainpagereturn(request):
     return render(request, 'index.html')
 
-def htmldevreturn(request):
-    return render(request, 'am studying.html')
+def optimizerreturn(request):
+    return render(request, 'generic.html')
 
 # Create your views here.
