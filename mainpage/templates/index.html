@@ -58,10 +58,17 @@
 									<span class="date">April 25, 2017</span>
 									<h2><a href="#">UID INPUT:</a></h2>
 								</header>
-                                <!-- IMPORTANT, REMOVE THIS TOMMOROW AS THIS IS JUST A BUTTON -->
-                                <form method="post">  {% csrf_token %}  {{ form.as_p }}
-                                        <button type="submit">Submit</button>
-                                    </form>
+                                <form method="post">
+                                {% csrf_token %}
+                                <div>
+                                    <label for="{{ form.GenshinUID.id_for_label }}">{{ form.GenshinUID.label }}</label>
+                                    <input type="number" name="{{ form.GenshinUID.name }}" id="{{ form.GenshinUID.id_for_label }}">
+                                    {{ form.GenshinUID.errors }}
+                                </div>
+                                <button type="submit">Submit UID</button>
+                                </form>
+
+
                                 <!-- IMPORTANT, REMOVE THIS TOMMOROW AS THIS IS JUST A BUTTON -->
 							</article>
 
@@ -208,9 +215,6 @@
 					</footer>
 
 				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
 
 			</div>
 

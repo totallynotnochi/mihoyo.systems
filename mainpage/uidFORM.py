@@ -1,5 +1,5 @@
 from django import forms
 
 
-class MyForm(forms.Form):
-    GenshinUID = forms.CharField(label="Your UID")
+class GenshinUidForm(forms.Form):
+    GenshinUID = forms.IntegerField(label="Your Genshin Impact UID:")
