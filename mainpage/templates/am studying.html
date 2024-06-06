@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Genshin Impact UID Submission</title>
+</head>
 <body>
 
-
+<form method="post">
+    {% csrf_token %}
+    <label for="genshin_uid">Your Genshin Impact UID:</label>
+    <input type="number" id="genshin_uid" name="GenshinUID" required>
+    <button type="submit">Submit UID</button>
+</form>
 
 </body>
 </html>
