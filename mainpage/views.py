@@ -45,4 +45,15 @@ def uid_loaded_index(request):
 def HTMLdevreturn(request):
     return render(request, 'am studying.html')
 
-# Create your views here.
+
+def advancedStats(request):  # variation of uid_loaded_index but without API call, just a data get
+    genshin_data = request.session.get('genshin_data', None)
+    uid = request.session.get('uid', None)
+    if uid:
+        genshin_data = asyncio.run(api_getter(uid))  # Fetch data from the API
+        if genshin_data:  # Check if data was fetched successfully
+            return render(request, 'AdvancedStats.html', {'genshin_data': genshin_data})
+        else:
+            return render(request, 'AdvancedStats.html', {'error_message': 'Error fetching data from API'})
+    else:
+        return render(request, 'AdvancedStats.html', {'error_message': 'UID not found'})

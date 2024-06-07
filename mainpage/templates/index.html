@@ -4,7 +4,7 @@
 
 <html lang="en">
 	<head>
-		<title>Mihoyo Systems</title>
+		<title>Mihoyo System</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{% static 'Massively/assets/css/main.css' %}"/>
@@ -18,7 +18,7 @@
 				<!-- Intro -->
 					<div id="intro">
 						<h1>This is<br />
-						mihoyo.systems</h1>
+						mihoyo.system</h1>
                         <p>A work-in-progess stats loader / damage calculator for <b> <a href="https://genshin.hoyoverse.com/">Genshin Impact</a> </b></p>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scroll">Continue</a></li>
@@ -33,15 +33,12 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">UID INPUT</a></li>
-							<li><a href="{% url 'uid_loaded_index' %}">Optimizer</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+							<li class="active"><a href="{% url 'MainPage' %}">UID INPUT</a></li>
+							<li><a href="{% url 'uid_loaded_index' %}">General Overview</a></li>
+							<li><a href="{% url 'advancedStats' %}">Advanced Stats</a></li>
 						</ul>
 						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://github.com/totallynotnochi/mihoyo.systems" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 						</ul>
 					</nav>
 
