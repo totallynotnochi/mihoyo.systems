@@ -37,7 +37,7 @@ def uid_loaded_index(request):
         if genshin_data:  # Check if data was fetched successfully
             return render(request, 'UIDLoadedIndex.html', {'genshin_data': genshin_data})
         else:
-            return  render(request, 'UIDLoadedIndex.html', {'error_message': 'Error fetching data from API'})
+            return render(request, 'UIDLoadedIndex.html', {'error_message': 'Error fetching data from API'})
     else:
         return render(request, 'UIDLoadedIndex.html', {'error_message': 'UID not found'})
 

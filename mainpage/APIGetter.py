@@ -14,15 +14,14 @@ async def api_getter(uid):
             genshin_data['playerInfo'] = data.player
             genshin_data['avatarInfoList'] = data.characters
 
-            # Check if 'stats' exists before accessing it
             if hasattr(data.player, 'stats'):
                 genshin_data['stats'] = data.player.stats
             else:
-                # Handle the case where stats are not available
-                genshin_data['stats'] = None  # or some default value
+                genshin_data['stats'] = None
+
 
             return genshin_data
-
         except Exception as e:
             print(f"Error fetching data: {e}")
             return None
+
