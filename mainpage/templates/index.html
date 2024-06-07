@@ -1,11 +1,7 @@
 {% load static %}
 
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html lang="en">
 	<head>
 		<title>Mihoyo Systems</title>
@@ -38,8 +34,8 @@
 					<nav id="nav">
 						<ul class="links">
 							<li class="active"><a href="index.html">UID INPUT</a></li>
-							<li><a href="{% url 'OptimizerAccess' %}">Optimizer</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>x
+							<li><a href="{% url 'uid_loaded_index' %}">Optimizer</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -64,19 +60,25 @@
                                     <input type="number" id="genshin_uid" name="GenshinUID" required>
                                     <button type="submit">Submit UID</button>
                                 </form>
-
 							</article>
-
 					</div>
+            </div>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<h1>Developed by Nochi.</h1>
-					</footer>
 
-				<!-- Copyright -->
 
-			</div>
+<footer>
+    <head>
+    <style>
+        h1 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Developed by <a href="https://github.com/totallynotnochi">Nochi.</a></h1>
+</body>
+</footer>
+
 
 		<!-- Scripts -->
 			<script src="{% static 'Massively/assets/js/jquery.min.js' %}"></script>

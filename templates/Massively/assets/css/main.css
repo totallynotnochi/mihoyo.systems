@@ -113,6 +113,8 @@ input, select, textarea {
 			transition: none !important;
 		}
 
+
+
 /* Type */
 
 	html {
@@ -3774,9 +3776,6 @@ input, select, textarea {
 				border-top: 0;
 			}
 
-		#main > footer {
-			text-align: center;
-		}
 
 		#main > .post {
 			padding: 8rem 8rem 6rem 8rem ;
@@ -3945,102 +3944,9 @@ input, select, textarea {
 
 		}
 
-/* Footer */
 
-	#footer {
-	}
 
-		#footer form label,
-		#footer h3,
-		#footer p {
-			font-size: 0.8rem;
-		}
 
-		@media screen and (max-width: 980px) {
-
-			#footer {
-				display: block;
-			}
-
-				#footer > section {
-					border-top: solid 2px #e2e2e2;
-				}
-
-					#footer > section:first-child {
-						border-top: 0;
-					}
-
-					#footer > section.split > section {
-						padding: 4rem 4rem 2rem 4rem ;
-					}
-
-						#footer > section.split > section:first-child {
-							padding: 4rem 4rem 2rem 4rem ;
-						}
-
-						#footer > section.split > section:last-child {
-							padding: 4rem 4rem 2rem 4rem ;
-						}
-
-					#footer > section.split.contact > section {
-						padding: 4rem;
-					}
-
-						#footer > section.split.contact > section:first-child {
-							padding: 4rem;
-						}
-
-						#footer > section.split.contact > section:last-child {
-							padding: 4rem;
-						}
-
-				#footer form label,
-				#footer h3,
-				#footer p {
-					font-size: 0.9rem;
-				}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			#footer > section {
-				padding: 2rem 2rem 0.1rem 2rem ;
-			}
-
-				#footer > section.split > section {
-					padding: 2rem 2rem 0.1rem 2rem ;
-				}
-
-					#footer > section.split > section:first-child {
-						padding: 2rem 2rem 0.1rem 2rem ;
-					}
-
-					#footer > section.split > section:last-child {
-						padding: 2rem 2rem 0.1rem 2rem ;
-					}
-
-				#footer > section.split.contact > section {
-					padding: 2rem;
-				}
-
-					#footer > section.split.contact > section:first-child {
-						padding: 2rem;
-					}
-
-					#footer > section.split.contact > section:last-child {
-						padding: 2rem;
-					}
-
-		}
-
-		@media screen and (max-width: 480px) {
-
-			#footer {
-				width: 100%;
-			}
-
-		}
 
 	#copyright {
 		color: #ffffff;
