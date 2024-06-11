@@ -1,0 +1,4 @@
+# Code that should not be on the damn repository
+
+MihoyoDotSystems/__pycache__/
+db.sqlite3
