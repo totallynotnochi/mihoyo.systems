@@ -5,27 +5,17 @@
 		<title>Main Page</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
 		<link rel="stylesheet" href="{% static 'Massively/assets/css/main.css'%}" />
 		<noscript><link rel="stylesheet" href="{% static 'Massively/assets/css/noscript.css'%}" /></noscript>
             <title>UID Loaded Index</title>
-        <style>
-.character-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 20px;
-}
-
-.character-card {
-    width: 300px;
-    text-align: center;
-    padding: 10px;     /* Padding is now added before the border */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box; /* This is the key! */
-}
-
-        </style>
+                <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
 	</head>
 	<body class="is-preload">
 
@@ -56,32 +46,77 @@
 							<section class="post">
 								<header class="major">
 
+
+
                                     {% if genshin_data %}
-                                        <h2>Player Information:</h2>
-                                        <p>Nickname: {{ genshin_data.playerInfo.nickname }}</p>
-                                        <p>Adventure Rank: {{ genshin_data.playerInfo.level }}</p>
-                                        <p>World Level: {{ genshin_data.playerInfo.world_level }}</p>
-
-                                        <h2>Characters:</h2>
-                                        <div class="character-list">
+                                        <h1>Genshin Character Stats (UID: {{ genshin_data.uid }})</h1>
+                                        <ul>
                                             {% for character in genshin_data.avatarInfoList %}
-                                                <div class="character-card">
-                                                    <img src="https://enka.network/ui/UI_AvatarIcon_{{ character.name }}.png" alt="{{ character.name }} Icon">
-                                                    <h3>{{ character.name }}</h3>
-                                                    <p>Level: {{ character.level }}</p>
-                                                    <p>Constellation: {{ character.constellations_unlocked }}</p>
-                                                    <p>Friendship: {{ character.friendship_level }}</p>
-                                                </div>
+                                                <li>
+                                                    <h2>{{ character.name }} (Level {{ character.level }})</h2>
+                                                    <ul class="stat-list">
+                                                        {% for stat_name, stat_value in character_stats.items %}
+                                                            {% if stat_name == character.name %}
+                                                                {% for inner_stat_name, inner_stat_value in stat_value.items %}
+                                                                    {% if inner_stat_name|slice:"0:16" != "FIGHT_PROP_CUR_" or inner_stat_name|slice:"-6:" != "ENERGY" %}
+                                                                    <li>
+                                                                        {% if inner_stat_name == 'FIGHT_PROP_BASE_ATTACK' %}Base Weapon ATK
+                                                                        {% elif inner_stat_name == 'BASE_HP' %}Base HP
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_BASE_DEFENSE' %}Base Weapon DEF
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_HP' %}Flat HP Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ATTACK' %}Flat ATK Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_DEFENSE' %}Flat DEF Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_HP_PERCENT' %}HP% Bonus (To Base HP)
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ATTACK_PERCENT' %}ATK% Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_DEFENSE_PERCENT' %}DEF% Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CRITICAL' %}Crit Rate
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CRITICAL_HURT' %}Crit DMG
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CHARGE_EFFICIENCY' %}Energy Recharge
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_HEAL_ADD' %}Healing% Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ELEMENT_MASTERY' %}Elemental Mastery
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_PHYSICAL_ADD_HURT' %}Physical DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_FIRE_ADD_HURT' %}Pyro DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ELEC_ADD_HURT' %}Electro DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_WATER_ADD_HURT' %}Hydro DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_WIND_ADD_HURT' %}Anemo DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ICE_ADD_HURT' %}Cryo DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_ROCK_ADD_HURT' %}Geo DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_GRASS_ADD_HURT' %}Dendro DMG Bonus
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_FIRE_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_FIRE_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ELEC_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ELEC_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_WATER_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_WATER_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_WIND_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_WIND_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ICE_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ICE_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ROCK_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ROCK_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_GRASS_ENERGY' %}Max Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_GRASS_ENERGY' %}Current Energy
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_HP' %}Current Max HP
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_HP' %}Actual Max HP
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ATTACK' %}Current Attack
+                                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_DEFENSE' %}Current Defence
+                                                                        {% else %}
+                                                                            {{ inner_stat_name }}  {# Fallback for unknown stats #}
+                                                                        {% endif %}
+                                                                        : {{ inner_stat_value }}
+                                                                    </li>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                    <hr />
+                                                </li>
                                             {% endfor %}
-                                        </div>
-
-                                        <h2>Stats:</h2>
-                                        <p>Active Days: {{ genshin_data.stats.active_days }}</p>
-                                    {% elif error_message %}
-                                        <p>{{ error_message }}</p>
+                                        </ul>
+                                    {% else %}
+                                        <p>Error: Character data not available.</p>
                                     {% endif %}
-
-
 
 								</header>
 								</section>
@@ -90,7 +125,7 @@
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul><li>&copy;mihoyosystems</li><li>Design: <a href="https://x.com/HoyoverseCanada">nochi & HTML5UP</a></li></ul>
 					</div>
 
 			</div>
