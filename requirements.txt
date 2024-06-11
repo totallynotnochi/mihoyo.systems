@@ -1,0 +1,2 @@
+Django~=5.0.6
+enkanetworkv2.py~=2.1.4
