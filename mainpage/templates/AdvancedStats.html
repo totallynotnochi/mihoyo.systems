@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% load extra_filters %}
+<html lang="en">
+    <head>
+       <title>Main Page</title>
+       <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+       <link rel="stylesheet" href="{% static 'Massively/assets/css/main.css'%}" />
+       <noscript><link rel="stylesheet" href="{% static 'Massively/assets/css/noscript.css'%}" /></noscript>
+            <title>UID Loaded Index</title>
+                <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+    </head>
+    <body class="is-preload">
+
+       <!-- Wrapper -->
+          <div id="wrapper">
+
+             <!-- Header -->
+                <header id="header">
+                   <a href="index.html" class="logo">mihoyo.system</a>
+                </header>
+
+             <!-- Nav -->
+                <nav id="nav">
+                   <ul class="links">
+                      <li><a href="/">UID INPUT</a></li>
+                      <li><a href="/uid-loaded-index/">General Overview</a></li>
+                      <li class="active"><a href="{% url "advancedStats" %}">Advanced Stats</a></li>
+                   </ul>
+                   <ul class="icons">
+                      <li><a href="https://github.com/totallynotnochi/mihoyo.systems" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                   </ul>
+                </nav>
+
+             <!-- Main -->
+                <div id="main">
+
+                   <!-- Post -->
+                      <section class="post">
+                         <header class="major">
+
+                                                 {% if genshin_data %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <label for="skill_scaling">Customizable Skill Scaling:</label>
+                            <input type="number" id="skill_scaling" name="skillScale" required>
+                            <button type="submit">Submit Scale!</button>
+                        </form>
+
+                        {% if form %}
+                            <p>SCALING GET! {{ form }}%</p>
+                        {% endif %}
+
+                        <hr />
+
+                        <h1>Genshin Character Stats (UID: {{ genshin_data.uid }})</h1>
+                        <hr />
+                        <ul>
+                            {% for character in genshin_data.avatarInfoList %}
+                                <h2>{{ character.name }} (Level {{ character.level }})</h2>
+                                <hr />
+                                <ul class="stat-list">
+                                    {% for stat_name, stat_value in character_stats.items %}
+                                        {% if stat_name == character.name %}
+                                            {% for inner_stat_name, inner_stat_value in stat_value.items %}
+                                                {% if inner_stat_name|slice:"0:16" != "FIGHT_PROP_CUR_" or inner_stat_name|slice:"-6:" != "ENERGY" %}
+                                                    <li>
+                                                        {% if inner_stat_name == 'FIGHT_PROP_BASE_ATTACK' %}Base Weapon ATK
+                                                        {% elif inner_stat_name == 'BASE_HP' %}Base HP
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_BASE_DEFENSE' %}Base Weapon DEF
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_HP' %}Flat HP Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ATTACK' %}Flat ATK Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_DEFENSE' %}Flat DEF Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_HP_PERCENT' %}HP% Bonus (To Base HP)
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ATTACK_PERCENT' %}ATK% Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_DEFENSE_PERCENT' %}DEF% Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CRITICAL' %}Crit Rate
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CRITICAL_HURT' %}Crit DMG
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CHARGE_EFFICIENCY' %}Energy Recharge
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_HEAL_ADD' %}Healing% Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ELEMENT_MASTERY' %}Elemental Mastery
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_PHYSICAL_ADD_HURT' %}Physical DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_FIRE_ADD_HURT' %}Pyro DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ELEC_ADD_HURT' %}Electro DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_WATER_ADD_HURT' %}Hydro DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_WIND_ADD_HURT' %}Anemo DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ICE_ADD_HURT' %}Cryo DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_ROCK_ADD_HURT' %}Geo DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_GRASS_ADD_HURT' %}Dendro DMG Bonus
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_FIRE_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_FIRE_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ELEC_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ELEC_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_WATER_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_WATER_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_WIND_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_WIND_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ICE_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ICE_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_ROCK_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ROCK_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_GRASS_ENERGY' %}Max Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_GRASS_ENERGY' %}Current Energy
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_HP' %}Current Max HP
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_MAX_HP' %}Actual Max HP
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_ATTACK' %}Current Attack
+                                                        {% elif inner_stat_name == 'FIGHT_PROP_CUR_DEFENSE' %}Current Defence
+                                                        {% else %}
+                                                            {{ inner_stat_name }}  {# Fallback for unknown stats #}
+                                                        {% endif %}
+                                                        : {{ inner_stat_value }}
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+
+{% if character.name in character_damage %}
+    <div class="damage-container">
+        <h4>Damage Calculations (Physical):</h4>
+        <ul class="damage-list">
+            {% with char_damage=character_damage|dict_get:character.name %}
+                <li>Normal: {{ char_damage.Normal }}</li>
+                <li>Normal Crit: {{ char_damage.NormalCrit }}</li>
+                <li>Avg. Crit: {{ char_damage.AvgCrit }}</li>
+            {% endwith %}
+        </ul>
+    </div>
+{% endif %}
+
+
+
+
+
+                                <hr />
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Error: Character data not available.</p>
+                    {% endif %}
+
+                         </header>
+                         </section>
+
+                </div>
+
+             <!-- Copyright -->
+                <div id="copyright">
+                   <ul><li>@mihoyosystems</li><li>Design: <a href="https://x.com/HoyoverseCanada">nochi & HTML5UP</a></li></ul>
+                </div>
+
+          </div>
+
+       <!-- Scripts -->
+          <script src="{% static 'Massively/assets/js/jquery.min.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/jquery.scrollex.min.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/jquery.scrolly.min.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/browser.min.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/breakpoints.min.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/util.js' %}"></script>
+          <script src="{% static 'Massively/assets/js/main.js' %}"></script>
+
+    </body>
+</html>

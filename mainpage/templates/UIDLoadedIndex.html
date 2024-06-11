@@ -5,6 +5,7 @@
 		<title>Main Page</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
 		<link rel="stylesheet" href="{% static 'Massively/assets/css/main.css'%}" />
 		<noscript><link rel="stylesheet" href="{% static 'Massively/assets/css/noscript.css'%}" /></noscript>
             <title>UID Loaded Index</title>
@@ -41,14 +42,11 @@
 					<nav id="nav">
 						<ul class="links">
 							<li><a href="/">UID INPUT</a></li>
-							<li class="active"><a href="{% url "uid_loaded_index" %}">Optimizer</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+							<li class="active"><a href="{% url "uid_loaded_index" %}">General Overview</a></li>
+							<li><a href="/advancedStats/">Advanced Stats</a></li>
 						</ul>
 						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://github.com/totallynotnochi/mihoyo.systems" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 						</ul>
 					</nav>
 
@@ -60,10 +58,22 @@
 								<header class="major">
 
                                     {% if genshin_data %}
-                                        <h2>Player Information:</h2>
-                                        <p>Nickname: {{ genshin_data.playerInfo.nickname }}</p>
+                                        <p>Please note that some images are broken due to Genshin's English localization and confusing filenames.</p>
+                                        <h2><b>Player Information:</b></h2>
+                                        <hr />
+                                        <h1><i>{{ genshin_data.playerInfo.nickname }}</i></h1>
+                                        <hr />
+									<blockquote> "{{genshin_data.playerInfo.signature}}" </blockquote>
+                                            <h3>- {{ genshin_data.playerInfo.nickname }}, Quote</h3>
+                                        <hr />
+                                        <img src="{{ genshin_data.playerInfo.namecard.navbar.url }}" alt="User Banner">
                                         <p>Adventure Rank: {{ genshin_data.playerInfo.level }}</p>
                                         <p>World Level: {{ genshin_data.playerInfo.world_level }}</p>
+                                        <p>Abyss Progress This Cycle: {{ genshin_data.playerInfo.abyss_floor }} / {{ genshin_data.playerInfo.abyss_room }} </p>
+
+
+
+                                         <hr />
 
                                         <h2>Characters:</h2>
                                         <div class="character-list">
@@ -77,9 +87,12 @@
                                                 </div>
                                             {% endfor %}
                                         </div>
+                                        <hr />
 
                                         <h2>Stats:</h2>
-                                        <p>Active Days: {{ genshin_data.stats.active_days }}</p>
+
+                                        <p>Timeout: {{ genshin_data.ttl }}ms</p>
+
                                     {% elif error_message %}
                                         <p>{{ error_message }}</p>
                                     {% endif %}
@@ -93,7 +106,7 @@
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul><li>@mihoyosystems</li><li>Design: <a href="https://x.com/HoyoverseCanada">nochi & HTML5UP</a></li></ul>
 					</div>
 
 			</div>
