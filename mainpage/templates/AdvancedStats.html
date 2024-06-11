@@ -126,7 +126,7 @@
 
 {% if character.name in character_damage %}
     <div class="damage-container">
-        <h4>Damage Calculations:</h4>
+        <h4>Damage Calculations (Physical):</h4>
         <ul class="damage-list">
             {% with char_damage=character_damage|dict_get:character.name %}
                 <li>Normal: {{ char_damage.Normal }}</li>

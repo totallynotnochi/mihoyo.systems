@@ -66,7 +66,7 @@ def advancedStats(request):
         genshin_data = asyncio.run(api_getter(uid))  # Fetch data from the API
         character_stats = asyncio.run(CharacterStats(uid))
         if genshin_data:  # Check if data was fetched successfully
-            if form:
+            if form and request.session.get('skill', None) != None:
                 return render(request, 'AdvancedStats.html', {'genshin_data': genshin_data, 'character_stats': character_stats, 'form': (request.session.get('skill', None)), 'character_damage': calculate_damage(character_stats, request.session.get('skill', None))})
             else:
                 return render(request, 'AdvancedStats.html', {'genshin_data': genshin_data, 'character_stats': character_stats})

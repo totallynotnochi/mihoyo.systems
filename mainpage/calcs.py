@@ -1,4 +1,5 @@
 def calculate_damage(character_stats, scaling):
+
     damage_dict = {}
     required_keys = ["FIGHT_PROP_CUR_ATTACK", "FIGHT_PROP_CRITICAL_HURT", "FIGHT_PROP_CRITICAL"]
 
@@ -9,17 +10,16 @@ def calculate_damage(character_stats, scaling):
         ):
             damage_values = {dmg_type: "N/A" for dmg_type in ["Normal", "Normal Crit", "Normal Crit (AVG)"]}
         else:
+
+            normal = stats["FIGHT_PROP_CUR_ATTACK"] * (scaling * 0.01)
+            normal_crit_dmg = ((stats["FIGHT_PROP_CUR_ATTACK"] * (scaling * 0.01)) * (stats["FIGHT_PROP_CRITICAL_HURT"] * 0.01))
+            crit_rate = stats["FIGHT_PROP_CRITICAL"] * 0.01
+
             # Calculate damage if stats are present and numeric
             damage_values = {
-                "Normal": stats["FIGHT_PROP_CUR_ATTACK"] * (scaling * 0.01),
-                "NormalCrit": (stats["FIGHT_PROP_CUR_ATTACK"] * (scaling * 0.01)) * (
-                        stats["FIGHT_PROP_CRITICAL_HURT"] * 0.01
-                ),
-                "AvgCrit": stats["FIGHT_PROP_CUR_ATTACK"]
-                                     * (stats["FIGHT_PROP_CRITICAL"] * 0.01)
-                                     * (1 + (stats["FIGHT_PROP_CRITICAL_HURT"] * 0.01))
-                                     + stats["FIGHT_PROP_CUR_ATTACK"]
-                                     * (1 - stats["FIGHT_PROP_CRITICAL"] * 0.01),
+                "Normal": normal,
+                "NormalCrit": normal + normal_crit_dmg,
+                "AvgCrit": normal + (normal_crit_dmg * crit_rate)
             }
 
         damage_dict[character_name] = damage_values
