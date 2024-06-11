@@ -41,4 +41,6 @@ By the end of the project, I hoped to achieve the following:
     python manage.py runserver
     ```
 4.  **Open in your browser:**
+
+
     Visit `http://127.0.0.1:8000/`
