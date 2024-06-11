@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from mainpage.uidFORM import GenshinUidForm
 from django.shortcuts import render, redirect
-from mainpage.APIGetter import api_getter
+from mainpage.APIGetter import api_getter, CharacterStats
 import asyncio
 
 
@@ -51,8 +51,9 @@ def advancedStats(request):  # variation of uid_loaded_index but without API cal
     uid = request.session.get('uid', None)
     if uid:
         genshin_data = asyncio.run(api_getter(uid))  # Fetch data from the API
+        character_stats = asyncio.run(CharacterStats(uid))
         if genshin_data:  # Check if data was fetched successfully
-            return render(request, 'AdvancedStats.html', {'genshin_data': genshin_data})
+            return render(request, 'AdvancedStats.html',{'genshin_data': genshin_data, 'character_stats': character_stats})
         else:
             return render(request, 'AdvancedStats.html', {'error_message': 'Error fetching data from API'})
     else:
