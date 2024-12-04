@@ -1,10 +1,22 @@
 # mihoyo.system
 
-mihoyo.system is a Django-based web app that accesses and analyses *Genshin Impact* player data .
+mihoyo.system is a Django-based web app that accesses and analyses *Genshin Impact* player data.
+
+## IMPORTANT
+
+This was a culminating project for ICS4U1 in the Ontario curriculum. Please dont use this as reference as teachers mark very differently. 
+
+This project is a complete dead-end, its a barebones webapp that should work as long as Enka's APIs don't go through major changes. Heavy dependency on the python wrapper for the Enka API.
+
+Most of the code is actually just HTML logic, which properly fucked me over. Thank you to the lords of HTML for providing me with a week of trying to tear my hair out. 
+
+The python logic is in the mainpage app, see for yourself on what does what.
 
 ## Purpose
 
-This project tries to provide a user-friendly interface for retrieving and displaying character information from Genshin Impact, including stats, constellations, and basic damage calculations.
+~~This project tries to provide a user-friendly interface for retrieving and displaying character information from Genshin Impact, including stats, constellations, and basic damage calculations.~~
+
+To get a somewhat high grade for my CS class
 
 ## Goals
 
@@ -27,6 +39,8 @@ By the end of the project, I hoped to achieve the following:
     *   JavaScript (For minor interactions)
 
 ## How to Run
+
+(TAKE THIS WITH A GRAIN OF SALT)
 
 1.  **Clone the repository:**  
     ```bash
