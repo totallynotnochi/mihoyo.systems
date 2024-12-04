@@ -18,6 +18,8 @@ The python logic is in the mainpage app, see for yourself on what does what.
 
 To get a somewhat high grade for my CS class
 
+(i did get a 95 on my project so i'll take it)
+
 ## Goals
 
 By the end of the project, I hoped to achieve the following:
