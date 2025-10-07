@@ -2,6 +2,10 @@
 
 mihoyo.system is a Django-based web app that accesses and analyses *Genshin Impact* player data.
 
+## IMPORTANT UPDATE: 2025 OCT 6
+
+yeah so apprently django has a SQL injection issue, and this uses a version of django that got hit. Ur mileage may vary. Remember to always write HORRIBLE, UNREADABLE and EXPLOITABLE code kids.
+
 ## IMPORTANT
 
 This was a culminating project for ICS4U1 in the Ontario curriculum. Please dont use this as reference as teachers mark very differently. 
